@@ -26,3 +26,22 @@ class MultiAgentCoordinator:
             for loser in sorted_group[1:]:
                 loser[1]["action"] = "wait"
         return self.agent_tasks
+        class MultiAgentCoordinator:
+    def __init__(self):
+        self.agent_tasks = {}
+
+    def store_agent_task(self, agent, task):
+        if agent not in self.agent_tasks:
+            self.agent_tasks[agent] = []
+        self.agent_tasks[agent].append(task)
+
+    def resolve_conflicts(self):
+        # simple: remove duplicate action at same hour
+        for agent, tasks in self.agent_tasks.items():
+            unique_tasks = []
+            hours = set()
+            for t in tasks:
+                if t["hour"] not in hours:
+                    unique_tasks.append(t)
+                    hours.add(t["hour"])
+            self.agent_tasks[agent] = unique_tasks
