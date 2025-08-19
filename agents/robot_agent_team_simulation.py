@@ -42,3 +42,6 @@ def run_team_simulation(user_id, gui):
                 except: pass
                 gui.update_gui(t["action"], t["action"], gui.memory_display.toPlainText())
         time.sleep(60)
+git add agents/ gui/ user_models/ requirements.txt run_system.py
+git commit -m "Add GUI + TTS + real-time audio/video integration"
+git push origin main
