@@ -24,3 +24,18 @@ class TeamScenarioSimulator:
                 for loser in hour_tasks[1:]:
                     loser[1]["action"]="wait"
         return simulation_results
+class TeamScenarioSimulator:
+    def __init__(self, coordinator, forecast_model, agents):
+        self.coordinator = coordinator
+        self.forecast_model = forecast_model
+        self.agents = agents
+
+    def simulate_24h(self, user_id):
+        simulation = {}
+        for agent in self.agents:
+            forecast = self.forecast_model.forecast_next_hours(user_id)
+            simulation[agent] = forecast
+            for t in forecast:
+                self.coordinator.store_agent_task(agent, t)
+        self.coordinator.resolve_conflicts()
+        return simulation
