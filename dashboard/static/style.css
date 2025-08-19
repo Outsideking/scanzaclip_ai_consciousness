@@ -1,1 +1,4 @@
-
+body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 20px; }
+h1 { color: #333; }
+div { background: #fff; padding: 10px; margin: 10px; border-radius: 5px; box-shadow: 0 0 5px #aaa;}
+pre { background: #eee; padding: 5px; }
