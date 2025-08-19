@@ -50,3 +50,5 @@ def run_robot_agent(user_id, video_source=0):
                 coordinator.send_task(task_entry)
 
         time.sleep(5)
+from core.behavior_comparator import BehaviorComparator
+from central.coordinator import coordinator
