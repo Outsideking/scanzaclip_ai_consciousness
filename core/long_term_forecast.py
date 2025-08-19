@@ -18,3 +18,17 @@ class LongTermBehaviorForecast:
             act = "cheer_up_user" if f["predicted_emotion"]=="sad" else "observe"
             actions.append({"hour": f["hour"], "action": act, "emotion": f["predicted_emotion"]})
         return actions
+class LongTermBehaviorForecast:
+    def __init__(self, adaptive_profile):
+        self.adaptive_profile = adaptive_profile
+
+    def forecast_next_hours(self, user_id, hours=24):
+        profile = self.adaptive_profile.get_profile(user_id)
+        forecast = []
+        for h in range(hours):
+            if profile.get("sad",0) > 0.5:
+                action = "cheer_up_user"
+            else:
+                action = "observe"
+            forecast.append({"hour":h, "action":action})
+        return forecast
