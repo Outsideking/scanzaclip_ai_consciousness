@@ -26,3 +26,6 @@ def analyze_emotion(text):
     # ตัวอย่าง simple
     if "sad" in text.lower(): return "sad"
     return "neutral"
+git add agents/ gui/ user_models/ requirements.txt run_system.py
+git commit -m "Add GUI + TTS + real-time audio/video integration"
+git push origin main
