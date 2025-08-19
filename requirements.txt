@@ -1,0 +1,5 @@
+numpy
+websocket-client
+opencv-python
+pyaudio
+pyttsx3
