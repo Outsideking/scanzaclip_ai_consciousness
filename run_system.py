@@ -17,3 +17,4 @@ python run_system.py
 python demo_run.py
 python live_run.py
 python run_live_system.py
+python dashboard/dashboard_server.py
