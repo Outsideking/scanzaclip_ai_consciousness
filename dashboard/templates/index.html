@@ -1,1 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scanzaclip AI Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Scanzaclip AI Dashboard</h1>
+    <div id="agents"></div>
 
+    <script>
+        const socket = io();
+        socket.on('update', function(data){
+            let container = document.getElementById('agents');
+            let agentDiv = document.getElementById(data.agent);
+            if(!agentDiv){
+                agentDiv = document.createElement('div');
+                agentDiv.id = data.agent;
+                container.appendChild(agentDiv);
+            }
+            agentDiv.innerHTML = `<h2>${data.agent}</h2>
+                                  <pre>${JSON.stringify(data.tasks, null, 2)}</pre>`;
+        });
+    </script>
+</body>
+</html>
