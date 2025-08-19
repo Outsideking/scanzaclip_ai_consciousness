@@ -15,3 +15,4 @@ git commit -m "Add GUI + TTS + real-time audio/video integration"
 git push origin main
 python run_system.py
 python demo_run.py
+python live_run.py
