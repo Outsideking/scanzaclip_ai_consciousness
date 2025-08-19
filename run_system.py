@@ -16,3 +16,4 @@ git push origin main
 python run_system.py
 python demo_run.py
 python live_run.py
+python run_live_system.py
