@@ -52,3 +52,27 @@ def run_robot_agent(user_id, video_source=0):
         time.sleep(5)
 from core.behavior_comparator import BehaviorComparator
 from central.coordinator import coordinator
+while True:
+    audio = record_audio()
+    text = speech_to_text(audio)
+    emotion = analyze_emotion(text)
+    action, response_text = decide_action(emotion)
+
+    # อัปเดต adaptive personality
+    adaptive_profile.update_event(user_id, emotion)
+
+    # แสดงผลผ่าน GUI
+    gui.latest_emotion = emotion
+    gui.latest_action = action
+    gui.speak(f"Action: {action}, Emotion: {emotion}, Response: {response_text}")
+
+    # 🔥 ใช้งาน comparator
+    comparison_results = comparator.compare_behaviors()
+
+    # ดูผลลัพธ์การเปรียบเทียบ
+    for agent_name, tasks in comparison_results.items():
+        for t in tasks:
+            print(f"[Compare] Agent:{agent_name}, User:{t['current_task']['user_id']}, "
+                  f"External tasks:{t['external_tasks']}")
+
+    time.sleep(5)
