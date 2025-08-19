@@ -27,3 +27,19 @@ class AdaptivePersonalityProfile:
 
     def get_profile(self, user_id):
         return self.user_profiles[user_id]
+        
+class AdaptivePersonalityProfile:
+    def __init__(self):
+        self.user_profiles = {}
+
+    def update_event(self, user_id, emotion):
+        if user_id not in self.user_profiles:
+            self.user_profiles[user_id] = {"happy":0, "sad":0, "neutral":0}
+        self.user_profiles[user_id][emotion] += 1
+
+    def get_profile(self, user_id):
+        if user_id not in self.user_profiles:
+            return {"happy":0, "sad":0, "neutral":0}
+        total = sum(self.user_profiles[user_id].values())
+        profile = {k: v/total for k,v in self.user_profiles[user_id].items()} if total>0 else self.user_profiles[user_id]
+        return profile
